@@ -1,0 +1,5 @@
+server1
+server2
+pc1
+laptop1
+tablet1
