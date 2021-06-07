@@ -22,7 +22,7 @@ def start():
     build_bat_file(r_desktop_to_connect)
 
     # Connect to device via RDP
-    time.sleep(3)
+    time.sleep(1)
     os.startfile(os.path.join(os.getcwd(), 'rdesktop.bat'))
 
 
@@ -57,8 +57,9 @@ def connect_to(list_of_servers):
         user_choice = input('Enter choice: ')
         if user_choice.casefold() == 'q':
             print('Have a great day. Goodbye!')
+            time.sleep(3)
             raise SystemExit
-        elif user_choice.casefold() == 'm':
+        if user_choice.casefold() == 'm':
             return input('Enter name of server then <Enter>: ')
 
         try:
@@ -95,13 +96,13 @@ def build_bat_file(r_desktop_to_connect):
     :param: string r_desktop_to_connect: User's choice to connect
     """
     with open('rdesktop.bat', 'w') as rdesktop:
-        rdesktop.write(f'start mstsc.exe /v:{r_desktop_to_connect}'
-                        f'\nexit 0')
+        rdesktop.write(f'start mstsc.exe /v:{r_desktop_to_connect} exit 0')
 
 
 if __name__ == '__main__':
     # If not ran in a Windows OS, close the program
     if os.name != 'nt':
         print('Sorry, this program will only run on Windows')
+        time.sleep(3)
         raise SystemExit
     start()
